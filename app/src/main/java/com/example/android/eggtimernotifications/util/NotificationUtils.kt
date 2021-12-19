@@ -63,6 +63,13 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .bigLargeIcon(null)
 
     // TODO: Step 2.2 add snooze action
+    val snoozeIntent = Intent(applicationContext, SnoozeReceiver::class.java)
+    val snoozePendingIntent: PendingIntent = PendingIntent.getBroadcast(
+        applicationContext,
+        REQUEST_CODE,
+        snoozeIntent,
+        FLAGS
+    )
 
     // TODO: Step 1.2 get an instance of NotificationCompat.Builder
     val builder = NotificationCompat.Builder(
@@ -85,9 +92,15 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .setStyle(bigPicStyle)
         .setLargeIcon(eggImage)
 
-    // TODO: Step 2.3 add snooze action
+        // TODO: Step 2.3 add snooze action
+        .addAction(
+            R.drawable.egg_icon,
+            applicationContext.getString(R.string.snooze),
+            snoozePendingIntent
+        )
 
-    // TODO: Step 2.5 set priority
+        // TODO: Step 2.5 set priority
+        .setPriority(NotificationCompat.PRIORITY_HIGH)
 
     // TODO: Step 1.4 call notify
     // Deliver the notification
