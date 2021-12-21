@@ -26,6 +26,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         // Instance ID token to your app server.
         sendRegistrationToServer(token)
     }
+    // [END on_new_token]
 
     private fun sendRegistrationToServer(token: String?) {
         TODO("Not yet implemented")
